@@ -5,7 +5,7 @@ import { useAuth } from '@redwoodjs/auth'
 import {
   Form,
   Label,
-  TextField,
+  EmailField,
   PasswordField,
   Submit,
   FieldError,
@@ -60,9 +60,9 @@ const LoginPage = () => {
                     className="rw-label"
                     errorClassName="rw-label rw-label-error"
                   >
-                    Username
+                    Username(Email)
                   </Label>
-                  <TextField
+                  <EmailField
                     name="username"
                     className="rw-input"
                     errorClassName="rw-input rw-input-error"
