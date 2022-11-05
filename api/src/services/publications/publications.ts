@@ -1,0 +1,63 @@
+import type {
+  QueryResolvers,
+  MutationResolvers,
+  PublicationRelationResolvers,
+} from 'types/graphql'
+
+import { db } from 'src/lib/db'
+
+export const publications: QueryResolvers['publications'] = () => {
+  const currentUser = context.currentUser
+
+  return db.publication.findMany({
+    where: {
+      creatorId: currentUser.id,
+    },
+  })
+}
+
+export const publication: QueryResolvers['publication'] = ({ id }) => {
+  return db.publication.findUnique({
+    where: { id },
+  })
+}
+
+export const createPublication: MutationResolvers['createPublication'] = ({
+  input,
+}) => {
+  const currentUser = context.currentUser
+
+  return db.publication.create({
+    data: {
+      ...input,
+      creatorId: currentUser.id,
+    },
+  })
+}
+
+export const updatePublication: MutationResolvers['updatePublication'] = ({
+  id,
+  input,
+}) => {
+  return db.publication.update({
+    data: input,
+    where: { id },
+  })
+}
+
+export const deletePublication: MutationResolvers['deletePublication'] = ({
+  id,
+}) => {
+  return db.publication.delete({
+    where: { id },
+  })
+}
+
+export const Publication: PublicationRelationResolvers = {
+  creator: (_obj, { root }) => {
+    return db.publication.findUnique({ where: { id: root?.id } }).creator()
+  },
+  stories: (_obj, { root }) => {
+    return db.publication.findUnique({ where: { id: root?.id } }).stories()
+  },
+}

@@ -1,0 +1,46 @@
+datasource db {
+  provider          = "postgresql"
+  url               = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+}
+
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = "native"
+}
+
+model User {
+  id                  Int           @id @default(autoincrement())
+  name                String?
+  email               String        @unique
+  hashedPassword      String
+  salt                String
+  resetToken          String?
+  resetTokenExpiresAt DateTime?
+  stories             Story[]
+  publications        Publication[]
+}
+
+model Story {
+  id            Int          @id @default(autoincrement())
+  title         String
+  content       String
+  author        User         @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  authorId      Int
+  publication   Publication? @relation(fields: [publicationId], references: [id], onDelete: Cascade)
+  publicationId Int?
+  createdAt     DateTime     @default(now())
+  isPublic      Boolean      @default(false)
+}
+
+model Publication {
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String
+  creator     User     @relation(fields: [creatorId], references: [id], onDelete: Cascade)
+  creatorId   Int
+  isPublic    Boolean  @default(false)
+  stories     Story[]
+  slug        String   @unique @default(cuid())
+  createdAt   DateTime @default(now())
+}
