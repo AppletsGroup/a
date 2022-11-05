@@ -55,20 +55,13 @@ export const Success = ({ story }: CellSuccessProps<EditStoryById>) => {
   }
 
   return (
-    <div className="rw-segment">
-      <header className="rw-segment-header">
-        <h2 className="rw-heading rw-heading-secondary">
-          Edit Story {story?.id}
-        </h2>
-      </header>
-      <div className="rw-segment-main">
-        <StoryForm
-          story={story}
-          onSave={onSave}
-          error={error}
-          loading={loading}
-        />
-      </div>
+    <div>
+      <StoryForm
+        story={story}
+        onSave={onSave}
+        error={error}
+        loading={loading}
+      />
     </div>
   )
 }

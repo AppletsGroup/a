@@ -42,7 +42,7 @@ export default function PublicationSelect({ defaultValue, onChange }) {
     >
       {({ open }) => (
         <>
-          <Listbox.Label className="mt-5 block text-sm font-medium text-gray-700">
+          <Listbox.Label className="mr-2 block text-sm font-medium text-gray-700">
             Publication
           </Listbox.Label>
           <div className="relative mt-1">
