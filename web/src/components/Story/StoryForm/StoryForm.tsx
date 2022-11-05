@@ -75,6 +75,7 @@ const StoryForm = (props: StoryFormProps) => {
 
         <TextAreaField
           name="content"
+          rows={6}
           defaultValue={props.story?.content}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
@@ -82,14 +83,6 @@ const StoryForm = (props: StoryFormProps) => {
         />
 
         <FieldError name="content" className="rw-field-error" />
-
-        <Label
-          name="content"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Publication
-        </Label>
 
         <PublicationSelect
           defaultValue={props.story?.publicationId}
