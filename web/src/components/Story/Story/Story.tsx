@@ -8,6 +8,7 @@ import { toast } from '@redwoodjs/web/toast'
 
 import Dropdown from 'src/components/Dropdown/Dropdown'
 import NonePubContent from 'src/components/NonePubContent/NonePubContent'
+import VisibilityLabel from 'src/components/VisibilityLabel/VisibilityLabel'
 import { formatTime } from 'src/lib/formatters'
 import { classNames } from 'src/lib/style'
 
@@ -48,10 +49,11 @@ const Story = ({ story }: Props) => {
 
   return (
     <div className="mx-auto mt-10 max-w-xl">
-      <div className="pl-4">
+      <div className="mb-5 pl-4">
         <div className="flex items-center">
-          <div className="text-2xl">{story.title}</div>
-          <div>
+          <div className="mr-3 text-2xl">{story.title}</div>
+          <VisibilityLabel isPublic={story.isPublic} />
+          <div className="ml-3">
             <Dropdown
               overlay={
                 <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
@@ -130,8 +132,7 @@ const Story = ({ story }: Props) => {
           </div>
         </div>
 
-        <div>{formatTime(story.createdAt)}</div>
-        <div>{story.isPublic ? 'Public' : 'Private'}</div>
+        <div className="mt-1 text-stone-600">{formatTime(story.createdAt)}</div>
       </div>
       <NonePubContent story={story} />
     </div>

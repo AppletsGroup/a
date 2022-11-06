@@ -11,6 +11,7 @@ import { toast } from '@redwoodjs/web/toast'
 
 import Dropdown from 'src/components/Dropdown/Dropdown'
 import { QUERY } from 'src/components/Publication/PublicationsCell'
+import VisibilityLabel from 'src/components/VisibilityLabel/VisibilityLabel'
 import { truncate } from 'src/lib/formatters'
 import { classNames } from 'src/lib/style'
 
@@ -51,17 +52,17 @@ const PublicationsList = ({ publications }: FindPublications) => {
           className="mb-6 flex items-center justify-between border-b pb-6"
         >
           <div>
-            <Link
-              to={routes.publication({ id: publication.id })}
-              className="text-xl text-stone-900"
-            >
-              {truncate(publication.name)}
-            </Link>
+            <div className="mb-2 flex items-center">
+              <Link
+                to={routes.publication({ id: publication.id })}
+                className="mr-3 text-xl text-stone-900"
+              >
+                {truncate(publication.name)}
+              </Link>
+              <VisibilityLabel isPublic={publication.isPublic} />
+            </div>
             <div className="text-lg text-stone-600">
               {truncate(publication.description)}
-            </div>
-            <div className="text-stone-500">
-              {publication.isPublic ? 'Public' : 'Private'}
             </div>
           </div>
           <Dropdown

@@ -10,6 +10,7 @@ import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
 import Dropdown from 'src/components/Dropdown/Dropdown'
+import VisibilityLabel from 'src/components/VisibilityLabel/VisibilityLabel'
 import { classNames } from 'src/lib/style'
 
 const DELETE_PUBLICATION_MUTATION = gql`
@@ -50,8 +51,9 @@ const Publication = ({ publication }: Props) => {
   return (
     <>
       <div className="flex items-center">
-        <div className="text-2xl">{publication.name}</div>
-        <div>
+        <div className="mr-3 text-2xl">{publication.name}</div>
+        <VisibilityLabel isPublic={publication.isPublic} />
+        <div className="ml-3">
           <Dropdown
             overlay={
               <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
@@ -131,8 +133,9 @@ const Publication = ({ publication }: Props) => {
           </Dropdown>
         </div>
       </div>
-      <div>{publication.description}</div>
-      <div>{publication.isPublic ? 'Public' : 'Private'}</div>
+      <div className="mt-2 text-xl text-stone-600">
+        {publication.description}
+      </div>
     </>
   )
 }
