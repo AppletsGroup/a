@@ -42,13 +42,13 @@ export default function PublicationSelect({ defaultValue, onChange }) {
     >
       {({ open }) => (
         <>
-          <Listbox.Label className="mr-2 block text-sm font-medium text-gray-700">
+          <Listbox.Label className="ml-5 mr-2 block text-sm font-medium text-gray-700">
             Publication
           </Listbox.Label>
           <div className="relative mt-1">
             <Listbox.Button className="relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
               <span className="flex items-center">
-                <span className="ml-3 block truncate">
+                <span className="block truncate">
                   {selectedPublication
                     ? selectedPublication.name
                     : 'Select Publication'}
@@ -76,7 +76,7 @@ export default function PublicationSelect({ defaultValue, onChange }) {
                     className={({ active }) =>
                       classNames(
                         active ? 'bg-indigo-600 text-white' : 'text-gray-900',
-                        'relative cursor-default select-none py-2 pl-3 pr-9'
+                        'relative cursor-default select-none py-2 pr-9'
                       )
                     }
                     value={publication}

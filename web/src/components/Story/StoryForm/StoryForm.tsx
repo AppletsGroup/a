@@ -73,7 +73,7 @@ const StoryForm = (props: StoryFormProps) => {
           listClassName="rw-form-error-list"
         />
 
-        <div className="flex items-center border-b pb-5">
+        <div className="ml-4 mb-8 flex items-center border-b pb-5 pt-2">
           <Label name="isPublic" className="mr-2">
             Is Public
           </Label>{' '}
@@ -98,7 +98,7 @@ const StoryForm = (props: StoryFormProps) => {
         <TextField
           name="title"
           defaultValue={props.story?.title}
-          className="rw-input border-0 outline-none placeholder:text-2xl focus:border-0 focus:shadow-none focus:outline-none focus:ring-0"
+          className="rw-input border-0 text-2xl outline-none placeholder:text-2xl focus:border-0 focus:shadow-none focus:outline-none focus:ring-0"
           errorClassName="rw-input rw-input-error"
           validation={{ required: true }}
           placeholder="Title"
