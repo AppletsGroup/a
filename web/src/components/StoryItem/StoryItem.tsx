@@ -1,6 +1,6 @@
 import { Menu } from '@headlessui/react'
 import { EllipsisHorizontalIcon } from '@heroicons/react/24/outline'
-import type { DeleteStoryMutationVariables, FindStories } from 'types/graphql'
+import type { DeleteStoryMutationVariables } from 'types/graphql'
 
 import { Link, routes } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
@@ -49,7 +49,9 @@ const StoryItem = ({ story, withoutPublication = false }) => {
       >
         {truncate(story.title)}
       </Link>
-      <div className="text-lg text-stone-600">{truncate(story.content)}</div>
+      <div className="text-lg text-stone-600">
+        {truncate(story.shortContent)}
+      </div>
       <div className="flex items-center justify-between">
         <div className="flex items-center justify-start">
           <div className="text-stone-400">{formatTime(story.createdAt)}</div>

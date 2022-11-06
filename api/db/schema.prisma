@@ -25,6 +25,7 @@ model Story {
   id            Int          @id @default(autoincrement())
   title         String
   content       String
+  shortContent  String?
   author        User         @relation(fields: [authorId], references: [id], onDelete: Cascade)
   authorId      Int
   publication   Publication? @relation(fields: [publicationId], references: [id], onDelete: Cascade)

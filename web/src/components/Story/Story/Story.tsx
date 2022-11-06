@@ -1,5 +1,11 @@
 import { Menu } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/24/outline'
+import {
+  useEditor,
+  defaultPreset,
+  EditorProvider,
+  EditorContent,
+} from 'nonepub'
 import type { DeleteStoryMutationVariables, FindStoryById } from 'types/graphql'
 
 import { Link, routes, navigate } from '@redwoodjs/router'
@@ -23,6 +29,28 @@ interface Props {
 }
 
 const Story = ({ story }: Props) => {
+  const options = defaultPreset(
+    {
+      type: 'html',
+      value: story.content || '',
+    },
+    {
+      uploader: (file) => {
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            const uri = URL.createObjectURL(file)
+            console.log('upload uri', uri)
+            resolve({
+              src: uri,
+            })
+          }, 1000)
+        })
+      },
+      readonly: true,
+    }
+  )
+  const editor = useEditor(options)
+
   const [deleteStory] = useMutation(DELETE_STORY_MUTATION, {
     onCompleted: () => {
       toast.success('Story deleted')
@@ -40,7 +68,7 @@ const Story = ({ story }: Props) => {
   }
 
   return (
-    <>
+    <div className="mx-auto mt-10 max-w-xl">
       <div className="flex items-center">
         <div className="text-2xl">{story.title}</div>
         <div>
@@ -92,8 +120,10 @@ const Story = ({ story }: Props) => {
 
       <div>{formatTime(story.createdAt)}</div>
       <div>{story.isPublic ? 'Public' : 'Private'}</div>
-      <div>{story.content}</div>
-    </>
+      <EditorProvider editor={editor}>
+        <EditorContent />
+      </EditorProvider>
+    </div>
   )
 }
 

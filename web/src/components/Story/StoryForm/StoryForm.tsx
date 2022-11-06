@@ -48,8 +48,10 @@ const StoryForm = (props: StoryFormProps) => {
 
   const onSubmit = (data: FormStory) => {
     const htmlString = editor.getContentHtml()
+    const shortContent = htmlString.replace(/<[^>]+>/g, ' ').substring(0, 100)
     data.content = htmlString
     data.publicationId = publicationId
+    data.shortContent = shortContent
     props.onSave(data, props?.story?.id)
   }
 

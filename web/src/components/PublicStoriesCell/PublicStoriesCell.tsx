@@ -67,7 +67,7 @@ export const Success = ({
               {truncate(story.title)}
             </Link>
             <div className="text-lg text-stone-600">
-              {truncate(story.content)}
+              {truncate(story.shortContent)}
             </div>
           </div>
         )

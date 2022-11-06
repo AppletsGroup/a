@@ -3,6 +3,7 @@ export const schema = gql`
     id: Int!
     title: String!
     content: String!
+    shortContent: String
     isPublic: Boolean!
     createdAt: DateTime!
     author: User
@@ -29,6 +30,7 @@ export const schema = gql`
     content: String!
     isPublic: Boolean
     publicationId: Int
+    shortContent: String
   }
 
   input UpdateStoryInput {
@@ -36,6 +38,7 @@ export const schema = gql`
     content: String
     isPublic: Boolean
     publicationId: Int
+    shortContent: String
   }
 
   type Mutation {
