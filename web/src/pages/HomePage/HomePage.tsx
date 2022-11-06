@@ -44,10 +44,9 @@ const HomePage = () => {
               A freedom app for creator
             </p>
             <p className="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
-              A is a powerful app for creators to publish, share, and grow a
-              business around their content. It comes with modern tools to build
-              a website, publish content, send newsletters & offer paid
-              subscriptions to members.
+              A is a powerful app help creators focus on writing and sharing. It
+              comes with modern tools to build a website, publish content, send
+              newsletters & offer paid subscriptions to members.
             </p>
           </div>
 
