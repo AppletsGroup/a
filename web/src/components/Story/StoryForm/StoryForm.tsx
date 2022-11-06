@@ -98,32 +98,14 @@ const StoryForm = (props: StoryFormProps) => {
         <TextField
           name="title"
           defaultValue={props.story?.title}
-          className="rw-input border-0 text-2xl outline-none placeholder:text-2xl focus:border-0 focus:shadow-none focus:outline-none focus:ring-0"
+          className="rw-input border-0 text-5xl text-stone-900 outline-none placeholder:text-2xl focus:border-0 focus:shadow-none focus:outline-none focus:ring-0"
           errorClassName="rw-input rw-input-error"
           validation={{ required: true }}
-          placeholder="Title"
+          placeholder="Input a nice Title"
         />
 
         <FieldError name="title" className="rw-field-error" />
 
-        {/* <Label
-          name="content"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Content
-        </Label>
-
-        <TextAreaField
-          name="content"
-          rows={6}
-          defaultValue={props.story?.content}
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
-        />
-
-        <FieldError name="content" className="rw-field-error" /> */}
         <NonePubEditor editor={editor} />
       </Form>
     </div>
