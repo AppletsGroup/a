@@ -85,6 +85,12 @@ export const story: QueryResolvers['story'] = ({ id }) => {
   })
 }
 
+export const publicStory: QueryResolvers['story'] = ({ id }) => {
+  return db.story.findFirst({
+    where: { id, isPublic: true },
+  })
+}
+
 export const createStory: MutationResolvers['createStory'] = ({ input }) => {
   const currentUser = context.currentUser
 

@@ -20,6 +20,7 @@ export const schema = gql`
   type Query {
     stories: [Story!]! @requireAuth
     story(id: Int!): Story @requireAuth
+    publicStory(id: Int!): Story @skipAuth
     storyPage(page: Int): StoryPage @requireAuth
     publicStories(page: Int): StoryPage @requireAuth
     publicationStories(page: Int, publicationId: Int): StoryPage @requireAuth
