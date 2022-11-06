@@ -45,8 +45,8 @@ const PublicationSharingPage = ({ slug }: PublicationSharingPageProps) => {
         description="PublicationSharing page"
       />
 
-      <div className="mx-auto mt-10 max-w-xl">
-        <h1 className="mb-5 border-b py-3 text-3xl">
+      <div className="mx-auto mt-5 max-w-xl px-10">
+        <h1 className="mb-10 border-b py-3 text-3xl">
           {publicPublication.name}
         </h1>
 

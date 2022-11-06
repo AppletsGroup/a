@@ -17,7 +17,7 @@ export default function ProfileMenu() {
 
   return (
     <Menu as="div" className="relative inline-block text-left">
-      <Menu.Button className="inline-flex w-full justify-center px-4 py-2 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none">
+      <Menu.Button className="inline-flex w-full items-center justify-center px-4 py-2 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none">
         {currentUser.email}
         <ChevronDownIcon
           className="-mr-1 ml-2 inline-block h-5 w-5"
