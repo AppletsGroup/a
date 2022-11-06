@@ -100,8 +100,6 @@ const PublicationForm = (props: PublicationFormProps) => {
         <CheckboxField
           name="isPublic"
           defaultChecked={props.publication?.isPublic}
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
         />
 
         <FieldError name="isPublic" className="rw-field-error" />

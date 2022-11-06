@@ -6,6 +6,8 @@ import type {
 
 import { db } from 'src/lib/db'
 
+import { StoryInputArgs } from '../stories/stories'
+
 export const publications: QueryResolvers['publications'] = () => {
   const currentUser = context.currentUser
 
@@ -13,6 +15,12 @@ export const publications: QueryResolvers['publications'] = () => {
     where: {
       creatorId: currentUser.id,
     },
+  })
+}
+
+export const publicPublication: QueryResolvers['publication'] = ({ slug }) => {
+  return db.publication.findFirst({
+    where: { slug, isPublic: true },
   })
 }
 
@@ -57,7 +65,15 @@ export const Publication: PublicationRelationResolvers = {
   creator: (_obj, { root }) => {
     return db.publication.findUnique({ where: { id: root?.id } }).creator()
   },
-  stories: (_obj, { root }) => {
-    return db.publication.findUnique({ where: { id: root?.id } }).stories()
+  stories: (
+    {
+      where = { isPublic: true },
+      orderBy = { id: 'desc' },
+    }: StoryInputArgs = {},
+    { root }
+  ) => {
+    return db.publication
+      .findUnique({ where: { id: root?.id } })
+      .stories({ where, orderBy })
   },
 }

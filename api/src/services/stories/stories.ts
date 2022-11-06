@@ -7,7 +7,14 @@ import { db } from 'src/lib/db'
 
 const STORIES_PER_PAGE = 100
 
-export const storyPage = ({ page = 1 }) => {
+export interface StoryInputArgs {
+  page?: number
+  pageSize?: number
+  where?: Prisma.StoryWhereInput
+  orderBy?: Prisma.StoryOrderByWithRelationInput
+}
+
+export const storyPage = ({ page = 1 }: StoryInputArgs) => {
   const offset = (page - 1) * STORIES_PER_PAGE
   const currentUser = context.currentUser
 
@@ -28,7 +35,7 @@ export const storyPage = ({ page = 1 }) => {
   }
 }
 
-export const publicStories = ({ page = 1 }) => {
+export const publicStories = ({ page = 1 }: StoryInputArgs) => {
   const offset = (page - 1) * STORIES_PER_PAGE
 
   return {

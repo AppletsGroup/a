@@ -76,7 +76,6 @@ const Story = ({ story }: Props) => {
                       {({ active }) => (
                         <Link
                           to={routes.storySharing({ id: story.id })}
-                          title={'Edit story ' + story.id}
                           className={classNames(
                             active
                               ? 'bg-gray-100 text-gray-900'

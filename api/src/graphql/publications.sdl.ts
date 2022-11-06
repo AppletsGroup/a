@@ -6,7 +6,7 @@ export const schema = gql`
     creator: User!
     creatorId: Int!
     isPublic: Boolean!
-    stories: [Story]!
+    stories(page: Int, pageSize: Int, where: StoriesWhereInput): [Story]!
     slug: String
     createdAt: DateTime!
   }
@@ -14,6 +14,7 @@ export const schema = gql`
   type Query {
     publications: [Publication!]! @requireAuth
     publication(id: Int!): Publication @requireAuth
+    publicPublication(slug: String!): Publication @skipAuth
   }
 
   input CreatePublicationInput {

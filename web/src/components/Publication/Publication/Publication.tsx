@@ -41,6 +41,12 @@ const Publication = ({ publication }: Props) => {
     }
   }
 
+  const handleCopySharingLink = () => {
+    navigator.clipboard.writeText(
+      `http://${window.location.host}/publications/${publication?.slug}`
+    )
+  }
+
   return (
     <>
       <div className="flex items-center">
@@ -64,6 +70,40 @@ const Publication = ({ publication }: Props) => {
                       >
                         Edit
                       </Link>
+                    )}
+                  </Menu.Item>
+                  <Menu.Item>
+                    {({ active }) => (
+                      <Link
+                        to={routes.publicationSharing({
+                          slug: publication.slug,
+                        })}
+                        className={classNames(
+                          active
+                            ? 'bg-gray-100 text-gray-900'
+                            : 'text-gray-700',
+                          'block px-4 py-2 text-sm'
+                        )}
+                      >
+                        Goto Public Page
+                      </Link>
+                    )}
+                  </Menu.Item>
+                  <Menu.Item>
+                    {({ active }) => (
+                      <button
+                        type="button"
+                        title={'Share publication ' + publication.id}
+                        onClick={handleCopySharingLink}
+                        className={classNames(
+                          active
+                            ? 'bg-gray-100 text-gray-900'
+                            : 'text-gray-700',
+                          'block w-full px-4	py-2 text-left text-sm'
+                        )}
+                      >
+                        Copy Sharing Link
+                      </button>
                     )}
                   </Menu.Item>
                   <Menu.Item>

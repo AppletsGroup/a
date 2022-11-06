@@ -16,6 +16,7 @@ import PublicLayout from './layouts/PublicLayout/PublicLayout'
 const Routes = () => {
   return (
     <Router>
+      <Route path="/publications/{slug:String}" page={PublicationSharingPage} name="publicationSharing" />
       <Route path="/stories/{id:Int}" page={StorySharingPage} name="storySharing" />
       <Route path="/login" page={LoginPage} name="login" />
       <Route path="/signup" page={SignupPage} name="signup" />

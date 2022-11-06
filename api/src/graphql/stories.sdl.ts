@@ -12,7 +12,12 @@ export const schema = gql`
     publication: Publication
   }
 
-  type StoryPage {
+  input StoriesWhereInput {
+    title: String
+    isPublic: Boolean
+  }
+
+  type PagedStories {
     stories: [Story!]!
     count: Int!
   }
@@ -21,9 +26,13 @@ export const schema = gql`
     stories: [Story!]! @requireAuth
     story(id: Int!): Story @requireAuth
     publicStory(id: Int!): Story @skipAuth
-    storyPage(page: Int): StoryPage @requireAuth
-    publicStories(page: Int): StoryPage @requireAuth
-    publicationStories(page: Int, publicationId: Int): StoryPage @requireAuth
+    storyPage(page: Int): PagedStories @requireAuth
+    publicStories(
+      page: Int
+      pageSize: Int
+      where: StoriesWhereInput
+    ): PagedStories @requireAuth
+    publicationStories(page: Int, publicationId: Int): PagedStories @requireAuth
   }
 
   input CreateStoryInput {
