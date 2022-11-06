@@ -8,6 +8,8 @@ import { useAuth } from '@redwoodjs/auth'
 import { Link, routes } from '@redwoodjs/router'
 import { Toaster } from '@redwoodjs/web/toast'
 
+import ServerlessHeartBeat from 'src/components/ServerlessHeartBeat/ServerlessHeartBeat'
+
 type LayoutProps = {
   children: React.ReactNode
 }
@@ -50,6 +52,7 @@ const ScaffoldLayout = ({ children }: LayoutProps) => {
           </div>
         </div>
       </div>
+      <ServerlessHeartBeat />
     </div>
   )
 }
