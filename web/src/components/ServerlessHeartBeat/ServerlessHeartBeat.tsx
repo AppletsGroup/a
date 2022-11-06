@@ -12,7 +12,7 @@ const QUERY = gql`
 const ServerlessHeartBeat = () => {
   useQuery(QUERY, {
     variables: { slug: '' },
-    pollInterval: 56000,
+    pollInterval: 30000,
   })
   console.log('SERVERLESS HEART BEAT!')
 
