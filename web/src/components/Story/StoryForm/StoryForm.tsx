@@ -98,7 +98,7 @@ const StoryForm = (props: StoryFormProps) => {
         <TextField
           name="title"
           defaultValue={props.story?.title}
-          className="rw-input border-0 text-5xl text-stone-900 outline-none placeholder:text-2xl focus:border-0 focus:shadow-none focus:outline-none focus:ring-0"
+          className="rw-input border-0 text-3xl text-stone-900 outline-none placeholder:text-2xl focus:border-0 focus:shadow-none focus:outline-none focus:ring-0"
           errorClassName="rw-input rw-input-error"
           validation={{ required: true }}
           placeholder="Input a nice Title"

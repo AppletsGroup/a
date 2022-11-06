@@ -14,6 +14,7 @@ export const QUERY = gql`
         id
         title
         content
+        shortContent
         createdAt
         publicationId
         publication {
