@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { useEffect } from 'react'
 
 import { useAuth } from '@redwoodjs/auth'
@@ -16,6 +16,7 @@ import { toast, Toaster } from '@redwoodjs/web/toast'
 
 const LoginPage = () => {
   const { isAuthenticated, logIn } = useAuth()
+  const [waiting, setWaiting] = useState(false)
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -29,6 +30,9 @@ const LoginPage = () => {
   }, [])
 
   const onSubmit = async (data: Record<string, string>) => {
+    if (waiting) return
+
+    setWaiting(true)
     const response = await logIn({ ...data })
 
     if (response.message) {
@@ -38,6 +42,7 @@ const LoginPage = () => {
     } else {
       toast.success('Welcome back!')
     }
+    setWaiting(false)
   }
 
   return (
@@ -109,7 +114,12 @@ const LoginPage = () => {
                   <FieldError name="password" className="rw-field-error" />
 
                   <div className="rw-button-group">
-                    <Submit className="rw-button rw-button-blue">Login</Submit>
+                    <Submit
+                      className="rw-button rw-button-blue"
+                      disabled={waiting}
+                    >
+                      {waiting ? 'Please wait...' : 'Login'}
+                    </Submit>
                   </div>
                 </Form>
               </div>
